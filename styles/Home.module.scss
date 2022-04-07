@@ -134,7 +134,7 @@ $box-shadow: inset 0 1px 1px rgb(0 0 0 / 5%);
   }
 
   section {
-    height: 18rem;
+    height: 14rem;
     padding: 15px 15px 0 15px;
     display: flex;
     flex-direction: column;
@@ -150,13 +150,45 @@ $box-shadow: inset 0 1px 1px rgb(0 0 0 / 5%);
       margin-bottom: 2rem;
       overflow: hidden;
       text-overflow: ellipsis;
+      color: $color-text-primary;
+      font-size: 14px;
+      font-weight: lighter;
     }
   }
 
   footer {
-    height: 3rem;
     width: 100%;
     background-color: $color-bg-card;
+    font-size: small;
+    .footer_header {
+      padding: 0.8rem;
+      text-align: center;
+      color: $color-text-primary;
+    }
+    .footer_versions {
+      width: 100%;
+      display: flex;
+      padding: 0.4rem;
+      font-weight: lighter;
+      .footer_date,
+      .footer_version {
+        width: 50%;
+      }
+    }
+    .footer_action {
+      width: 100%;
+     display: flex;
+     justify-content: center;
+      .download {
+        width: 2rem;
+        height: 2rem;
+        cursor: pointer;
+        &:hover{
+          transform: scale(1.1) ;
+          fill: $color-text-secondary;
+        }
+      }
+    }
   }
 
   text-decoration: none;
@@ -165,7 +197,6 @@ $box-shadow: inset 0 1px 1px rgb(0 0 0 / 5%);
 .card:hover,
 .card:focus,
 .card:active {
-  color: $color-text-secondary;
   border-color: $color-text-secondary;
 }
 
