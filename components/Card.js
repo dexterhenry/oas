@@ -18,9 +18,7 @@ export const Card = ({ apiData }) => {
               <img src={logo.url} width="90px" height="90px"></img>
             </a>
           </div>
-          <div className={styles.panel_description}>
-            <p>{description}</p>
-          </div>
+          <div className={styles.panel_description}  dangerouslySetInnerHTML={{ __html: description }} />
         </section>
         <footer>
           <div className={styles.footer_header}>
