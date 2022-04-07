@@ -1,8 +1,8 @@
 import Head from "next/head";
 import styles from "../styles/Home.module.scss";
-import { CardList } from "./components/CardList";
-import { Header } from "./components/Header";
-import { Menu } from "./components/Menu";
+import { CardList } from "../components/CardList";
+import { Header } from "../components/Header";
+import { Menu } from "../components/Menu";
 
 export default function Home() {
   return (
