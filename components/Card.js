@@ -1,8 +1,9 @@
-import Image from "next/image";
 import styles from "../styles/Home.module.scss";
 
 export const Card = ({ apiData }) => {
   const { title, url, logo, description, category, version, added } = apiData;
+
+  const handleImgError = (e) => (e.target.src = "/noImg.png");
 
   return (
     <>
@@ -13,12 +14,24 @@ export const Card = ({ apiData }) => {
           </a>
         </header>
         <section>
-          <div className={styles.panel_logo} style={{"backgroundColor": logo.backgroundColor}}>
+          <div
+            className={styles.panel_logo}
+            style={{ backgroundColor: logo.backgroundColor }}
+          >
             <a target="_blank" rel="noreferrer" href={url}>
-              <img src={logo.url} width="90px" height="90px"></img>
+              <img
+                src={logo.url}
+                width="90px"
+                height="90px"
+                alt="Logo"
+                onError={handleImgError}
+              />
             </a>
           </div>
-          <div className={styles.panel_description}  dangerouslySetInnerHTML={{ __html: description }} />
+          <div
+            className={styles.panel_description}
+            dangerouslySetInnerHTML={{ __html: description }}
+          />
         </section>
         <footer>
           <div className={styles.footer_header}>
