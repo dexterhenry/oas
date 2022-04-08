@@ -3,7 +3,7 @@ import styles from "../styles/Home.module.scss";
 export const Card = ({ apiData }) => {
   const { title, url, logo, description, category, version, added } = apiData;
 
-  const handleImgError = (e) => (e.target.src = "/noImg.png");
+  const handleImgError = (e) => (e.target.src = "https://api.apis.guru/v2/cache/logo/https_apis.guru_assets_images_no-logo.svg");
 
   return (
     <>
@@ -21,8 +21,6 @@ export const Card = ({ apiData }) => {
             <a target="_blank" rel="noreferrer" href={url}>
               <img
                 src={logo.url}
-                width="90px"
-                height="90px"
                 alt="Logo"
                 onError={handleImgError}
               />
