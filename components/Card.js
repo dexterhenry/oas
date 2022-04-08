@@ -1,9 +1,20 @@
 import styles from "../styles/Home.module.scss";
 
 export const Card = ({ apiData }) => {
-  const { title, url, logo, description, category, version, added } = apiData;
+  const {
+    title,
+    url,
+    logo,
+    description,
+    category,
+    version,
+    added,
+    swaggerUrl,
+  } = apiData;
 
-  const handleImgError = (e) => (e.target.src = "https://api.apis.guru/v2/cache/logo/https_apis.guru_assets_images_no-logo.svg");
+  const handleImgError = (e) =>
+    (e.target.src =
+      "https://api.apis.guru/v2/cache/logo/https_apis.guru_assets_images_no-logo.svg");
 
   return (
     <>
@@ -19,11 +30,7 @@ export const Card = ({ apiData }) => {
             style={{ backgroundColor: logo.backgroundColor }}
           >
             <a target="_blank" rel="noreferrer" href={url}>
-              <img
-                src={logo.url}
-                alt="Logo"
-                onError={handleImgError}
-              />
+              <img src={logo.url} alt="Logo" onError={handleImgError} />
             </a>
           </div>
           <div
@@ -45,9 +52,11 @@ export const Card = ({ apiData }) => {
           </div>
           <div className={styles.footer_action}>
             <div className={styles.download}>
-              <svg width="18px" height="24px">
-                <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" />
-              </svg>
+              <a target="_blank" rel="noreferrer" href={swaggerUrl}>
+                <svg width="18px" height="24px">
+                  <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" />
+                </svg>
+              </a>
             </div>
           </div>
         </footer>

@@ -19,6 +19,7 @@ const transformApiData = (apiData) => {
     description = info.description,
     category = api.info["x-apisguru-categories"],
     version = preferred,
+    swaggerUrl = api.swaggerUrl,
     origUrl;
 
   api.info["x-origin"]
@@ -33,6 +34,7 @@ const transformApiData = (apiData) => {
     category,
     version,
     added,
+    swaggerUrl
   };
 };
 
