@@ -13,7 +13,7 @@ const transformApiData = (apiData) => {
     contact = info.contact || {},
     externalUrl = externalDocs.url || contact.url,
     logo = info["x-logo"] || {},
-    added = new Date(apiData.added).toDateString(),
+    added = new Date(apiData.added).toDateString().split(' ').slice(1).join(' '),
     title = info.title,
     url = externalUrl,
     description = info.description,
