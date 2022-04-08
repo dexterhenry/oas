@@ -13,7 +13,11 @@ const transformApiData = (apiData) => {
     contact = info.contact || {},
     externalUrl = externalDocs.url || contact.url,
     logo = info["x-logo"] || {},
-    added = new Date(apiData.added).toDateString().split(' ').slice(1).join(' '),
+    added = new Date(apiData.added)
+      .toDateString()
+      .split(" ")
+      .slice(1)
+      .join(" "),
     title = info.title,
     url = externalUrl,
     description = info.description,
@@ -34,7 +38,7 @@ const transformApiData = (apiData) => {
     category,
     version,
     added,
-    swaggerUrl
+    swaggerUrl,
   };
 };
 
@@ -50,24 +54,16 @@ export default function Home() {
       .then((json) => Object.values(json).map((api) => transformApiData(api)))
       .then((data) => {
         setApis(data);
-        setCategories([{ all: data }]);
+        let apiCategories = data
+          .map((api) => api.category)
+          .filter((c) => Boolean(c))
+          .flat(Infinity)
+          .sort();
+        let categories = Array.from(new Set(apiCategories));
+        setCategories(["all", ...categories]);
         setLoading(false);
       });
   }, []);
-
-  useEffect(() => {
-    let categoryToFill = categories;
-    apis.forEach((api) => {
-      let apiCategories = api.category;
-      if (!apiCategories) return;
-
-      apiCategories.forEach((cat) => {
-        categoryToFill[cat] ||= [];
-        categoryToFill[cat].push(api);
-      });
-    });
-    setCategories(setCategories);
-  }, [apis]);
 
   return (
     <>
