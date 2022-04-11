@@ -45,6 +45,8 @@ const transformApiData = (apiData) => {
 export default function Home() {
   const [apis, setApis] = useState([]);
   const [categories, setCategories] = useState([]);
+  const [currentCategory, setCurrentCategory] = useState("all");
+  const [apiOfCategory, setApiOfCategory] = useState([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -54,6 +56,7 @@ export default function Home() {
       .then((json) => Object.values(json).map((api) => transformApiData(api)))
       .then((data) => {
         setApis(data);
+        setApiOfCategory(data);
         let apiCategories = data
           .map((api) => api.category)
           .filter((c) => Boolean(c))
@@ -64,6 +67,23 @@ export default function Home() {
         setLoading(false);
       });
   }, []);
+
+  useEffect(() => {
+    if (currentCategory === "all") {
+      setApiOfCategory(apis);
+      return;
+    }
+
+    let apisOfCategory = apis.filter((api) =>
+      api?.category?.join(" ").includes(currentCategory)
+    );
+
+    setApiOfCategory(apisOfCategory);
+  }, [currentCategory]);
+
+  const handleCategoryClick = (category) => {
+    setCurrentCategory(category);
+  };
 
   return (
     <>
@@ -79,8 +99,12 @@ export default function Home() {
           <Header amount={apis.length} />
         </section>
         <section className={styles.content_wrapper}>
-          <Menu categories={categories} />
-          <CardList loading={loading} apis={apis} />
+          <Menu
+            categories={categories}
+            currentCategory={currentCategory}
+            handleCategoryClick={handleCategoryClick}
+          />
+          <CardList loading={loading} apis={apiOfCategory} />
         </section>
       </main>
     </>
