@@ -47,6 +47,7 @@ export default function Home() {
   const [categories, setCategories] = useState([]);
   const [currentCategory, setCurrentCategory] = useState("all");
   const [apiOfCategory, setApiOfCategory] = useState([]);
+
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -85,6 +86,16 @@ export default function Home() {
     setCurrentCategory(category);
   };
 
+  const handleSearchByName = (name) => {
+    if (!name) {
+      setCurrentCategory("all");
+      setApiOfCategory(apis);
+      return;
+    }
+    let apisOfName = apis.filter((api) => api?.title?.includes(name));
+    setApiOfCategory(apisOfName);
+  };
+
   return (
     <>
       <Head>
@@ -96,7 +107,12 @@ export default function Home() {
       <main className={styles.main}>
         {/* Headers section  */}
         <section className={styles.header}>
-          <Header amount={apis.length} />
+          <Header
+            amount={apis.length}
+            handleSearchByName={handleSearchByName}
+            currentCategory={currentCategory}
+            loading={loading}
+          />
         </section>
         <section className={styles.content_wrapper}>
           <Menu

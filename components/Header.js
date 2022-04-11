@@ -1,7 +1,14 @@
 import Image from "next/image";
 import styles from "../styles/Home.module.scss";
+import { Search } from "./Search";
 
-export const Header = ({ amount = "1400" }) => {
+export const Header = ({
+  amount = "1400",
+  searchValue,
+  handleSearchByName,
+  currentCategory,
+  loading,
+}) => {
   return (
     <div className={styles.header}>
       <h1> OpenAPI Directory </h1>
@@ -23,6 +30,13 @@ export const Header = ({ amount = "1400" }) => {
           </span>
         </a>
       </p>
+      {!loading && (
+        <Search
+          searchValue={searchValue}
+          handleSearchByName={handleSearchByName}
+          currentCategory={currentCategory}
+        />
+      )}
     </div>
   );
 };

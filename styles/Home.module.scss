@@ -39,12 +39,41 @@ $box-shadow: inset 0 1px 1px rgb(0 0 0 / 5%);
   }
 }
 
+.search {
+  width: 400px;
+  height: 30px;
+  margin: 8px auto;
+  border: 1px solid $color-border;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  input {
+    width: 100%;
+    text-align: center;
+    border: none;
+    outline: none;
+    color: $color-text-secondary;
+    line-height: 1.5;
+  }
+}
+
 .content_wrapper {
   height: 90vh;
   display: flex;
   margin-bottom: 2rem;
   box-sizing: border-box;
   width: 100%;
+}
+
+.no_content_search {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  margin-left: -15% ;
+  margin-top: -15%;
 }
 
 .content_nav {
