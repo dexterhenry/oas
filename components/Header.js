@@ -4,7 +4,6 @@ import { Search } from "./Search";
 
 export const Header = ({
   amount = "1400",
-  searchValue,
   handleSearchByName,
   currentCategory,
   loading,
@@ -32,7 +31,6 @@ export const Header = ({
       </p>
       {!loading && (
         <Search
-          searchValue={searchValue}
           handleSearchByName={handleSearchByName}
           currentCategory={currentCategory}
         />

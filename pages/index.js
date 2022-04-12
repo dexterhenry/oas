@@ -4,6 +4,7 @@ import { CardList } from "../components/CardList";
 import { Header } from "../components/Header";
 import { Menu } from "../components/Menu";
 import { useEffect, useState } from "react";
+import { Search } from "../components/Search";
 
 const transformApiData = (apiData) => {
   let preferred = apiData.preferred,
@@ -106,21 +107,18 @@ export default function Home() {
 
       <main className={styles.main}>
         {/* Headers section  */}
-        <section className={styles.header}>
-          <Header
-            amount={apis.length}
-            handleSearchByName={handleSearchByName}
-            currentCategory={currentCategory}
-            loading={loading}
-          />
-        </section>
         <section className={styles.content_wrapper}>
           <Menu
             categories={categories}
             currentCategory={currentCategory}
             handleCategoryClick={handleCategoryClick}
           />
-          <CardList loading={loading} apis={apiOfCategory} />
+          <CardList
+            loading={loading}
+            apis={apiOfCategory}
+            handleSearchByName={handleSearchByName}
+            currentCategory={currentCategory}
+          />
         </section>
       </main>
     </>

@@ -20,7 +20,7 @@ export const Search = ({ handleSearchByName, currentCategory }) => {
   }, [currentCategory]);
 
   return (
-    <div className={styles.search}>
+    <div className={styles.search_input_wrapper   }>
       <input
         name="search-api"
         placeholder="Find api ..."
