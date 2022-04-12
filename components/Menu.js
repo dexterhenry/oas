@@ -10,7 +10,7 @@ export const Menu = ({ categories, currentCategory, handleCategoryClick }) => {
           return (
             <li
               key={index}
-              className={isActive && styles.active_category}
+              className={isActive ? styles.active_category : undefined}
               onClick={() => handleCategoryClick(category)}
             >
               <a>{category}</a>
