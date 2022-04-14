@@ -9,6 +9,9 @@ export const CardList = ({
   apis,
   handleSearchByName,
   currentCategory,
+  handleOpenModal,
+  handleCloseModal,
+  fillModalData,
 }) => {
   return (
     <article className={styles.content_list_wrapper}>
@@ -23,7 +26,14 @@ export const CardList = ({
       {!loading && apis.length > 0 && (
         <div className={styles.content_list}>
           {apis.map((api, index) => (
-            <Card key={index} styles={styles} apiData={api} />
+            <Card
+              key={index}
+              styles={styles}
+              apiData={api}
+              handleOpenModal={handleOpenModal}
+              handleCloseModal={handleCloseModal}
+              fillModalData={fillModalData}
+            />
           ))}
         </div>
       )}
@@ -31,7 +41,7 @@ export const CardList = ({
       <div className={styles.content_list_loader}>
         {loading && <Loader width="100px" height="100px" />}
         {!loading && !apis.length && (
-          <div className={styles.no_content_search} >
+          <div className={styles.no_content_search}>
             <Image
               src="/no-result-found.png"
               alt="no-result-found"

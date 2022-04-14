@@ -1,6 +1,10 @@
 import styles from "../styles/Home.module.scss";
 
-export const Card = ({ apiData }) => {
+export const handleImgError = (e) =>
+  (e.target.src =
+    "https://api.apis.guru/v2/cache/logo/https_apis.guru_assets_images_no-logo.svg");
+
+export const Card = ({ apiData, handleOpenModal, fillModalData }) => {
   const {
     title,
     url,
@@ -10,11 +14,14 @@ export const Card = ({ apiData }) => {
     version,
     added,
     swaggerUrl,
+    detail,
   } = apiData;
 
-  const handleImgError = (e) =>
-    (e.target.src =
-      "https://api.apis.guru/v2/cache/logo/https_apis.guru_assets_images_no-logo.svg");
+  const handleApiDetail = (e, apiDetail) => {
+    e.preventDefault();
+    fillModalData(apiDetail);
+    handleOpenModal();
+  };
 
   return (
     <>
@@ -29,7 +36,11 @@ export const Card = ({ apiData }) => {
             className={styles.panel_logo}
             style={{ backgroundColor: logo.backgroundColor }}
           >
-            <a target="_blank" rel="noreferrer" href={url}>
+            <a
+              target="_blank"
+              rel="noreferrer"
+              onClick={(e) => handleApiDetail(e, detail)}
+            >
               <img src={logo.url} alt="Logo" onError={handleImgError} />
             </a>
           </div>
