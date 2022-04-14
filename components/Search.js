@@ -8,25 +8,29 @@ export const Search = ({ handleSearchByName, currentCategory }) => {
   };
 
   useEffect(() => {
-    if (search) {
+    if (!search) {
       handleSearchByName(search);
     }
-
-    if (currentCategory !== "all" && !search) return;
   }, [search]);
 
   useEffect(() => {
     setSearch("");
   }, [currentCategory]);
 
+  const handleKeyDown = (e) => {
+    let keycode = e.keyCode || e.which;
+    keycode == 13 && search && handleSearchByName(search);
+  };
+
   return (
-    <div className={styles.search_input_wrapper   }>
+    <div className={styles.search_input_wrapper}>
       <input
         name="search-api"
         placeholder="Find api ..."
         autoComplete="off"
         value={search}
         onInput={handleInputSearch}
+        onKeyDown={handleKeyDown}
       />
     </div>
   );
