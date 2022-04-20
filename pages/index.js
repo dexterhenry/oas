@@ -5,6 +5,9 @@ import { Header } from "../components/Header";
 import { Menu } from "../components/Menu";
 import { useEffect, useState } from "react";
 import { Search } from "../components/Search";
+import { useAuthorization } from "../hooks/useAuthorization";
+import { TenantInfo } from "../components/TenantInfo";
+import Loader from "../components/Loader";
 
 const transformApiData = (apiData) => {
   let preferred = apiData.preferred,
@@ -44,6 +47,7 @@ const transformApiData = (apiData) => {
 };
 
 export default function Home() {
+  const [authorizing, error] = useAuthorization();
   const [apis, setApis] = useState([]);
   const [categories, setCategories] = useState([]);
   const [currentCategory, setCurrentCategory] = useState("all");
@@ -97,6 +101,20 @@ export default function Home() {
     setApiOfCategory(apisOfName);
   };
 
+  if (authorizing)
+    return (
+      <div className={styles.main}>
+        <Loader width="100px" height="100px" />
+      </div>
+    );
+
+  if (error)
+    return (
+      <div className={styles.main}>
+        <p> Authorization Error.....</p>
+      </div>
+    );
+
   return (
     <>
       <Head>
@@ -106,6 +124,7 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
+        <TenantInfo />
         {/* Headers section  */}
         <section className={styles.content_wrapper}>
           <Menu
