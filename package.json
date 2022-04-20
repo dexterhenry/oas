@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": " PORT=3002 next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -12,7 +12,9 @@
     "next": "12.1.4",
     "react": "18.0.0",
     "react-dom": "18.0.0",
-    "sass": "1.49.11"
+    "sass": "1.49.11",
+    "axios": "^0.26.1",
+    "rxjs": "^7.5.5"
   },
   "devDependencies": {
     "eslint": "8.12.0",
