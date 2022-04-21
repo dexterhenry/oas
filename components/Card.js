@@ -27,7 +27,11 @@ export const Card = ({ apiData, handleOpenModal, fillModalData }) => {
     <>
       <article className={styles.card}>
         <header>
-          <a target="_blank" rel="noreferrer" href={url}>
+          <a
+            target="_blank"
+            rel="noreferrer"
+            onClick={(e) => handleApiDetail(e, detail)}
+          >
             {title}
           </a>
         </header>

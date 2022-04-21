@@ -19,9 +19,11 @@ const Modal = ({ closeModal, modalData }) => {
           </aside>
           <div className={styles.modalContent}>
             <header>
-              <h5 className={styles.heading}>
-                {modalData?.title} <span>{modalData?.version} </span>
-              </h5>
+              <a target="_blank" rel="noreferrer" href={modalData?.url}>
+                <h5 className={styles.heading}>
+                  {modalData?.title} <span>{modalData?.version} </span>
+                </h5>
+              </a>
               <div className={styles.headingDates}>
                 <p>
                   <span> Added: </span>
